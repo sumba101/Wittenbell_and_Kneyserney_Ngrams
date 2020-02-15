@@ -1,0 +1,29 @@
+
+how to run
+  python3 language_model.py <n for ngram> <k or w for kneyser_ney or witten> <path to input corpus>
+
+the two models implemented are witten bell and kneyser_ney
+
+n grams handled were unigram, bigram and trigram for kneyser_ney
+however the code for witten bell is generalised enough to handle any n-grams
+
+Both the models have been implemented in the sliding window method wherein the probabilities of the consituent ngrams are multiplied together
+
+Corner cases handled
+    for Witten bell
+        words and ngrams that are never seen in the context are penalised by being given a random floating point value between 1e-4 to 1e-5
+        whereas if the words are present in the corpus but are not in the order as dictacted by the ngram, smoothing method is used to handle it
+            
+   for kneyser_ney
+        unknown words and combinations and combination of unknown words with known words are the corner cases
+        first case not handled for unigrams and it spews 0
+        similar situation for the other cases
+
+Comparision of the models
+1)
+kneyser_ney was viewed to be better however kneyser_ney implementation produced here is computationally intensive and takes longer time when compared to witten bell
+2)
+kneyser_ney model is implemented in a linking of function calls whereas witten bell is implemented in a recursive fashion
+3)
+witten bell tends to give smaller probabilities when compared to kneyser_ney
+
